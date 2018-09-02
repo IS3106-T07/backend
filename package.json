@@ -24,14 +24,14 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "mongodb": "^3.1.4",
-    "mongoose": "^5.2.12"
+    "mongoose": "^5.2.8",
+    "validator": "^10.7.1"
   },
   "babel": {
     "presets": [
       "env"
     ]
   },
-
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0"

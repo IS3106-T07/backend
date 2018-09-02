@@ -1,5 +1,5 @@
 import {
-    createuser
+    createUser
 } from '../controllers/userController';
 
 import express from 'express';
@@ -7,7 +7,7 @@ import express from 'express';
 const userRouter = express.Router();
 
 userRouter.route('/users')
-    .post(createuser);
+    .post(createUser);
 
 module.exports = {
     userRouter

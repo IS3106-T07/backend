@@ -1,5 +1,8 @@
 require('dotenv').load();
 
+// setup mongodb connection
+require('./models/mongoose');
+
 import express from 'express';
 import bodyParser from 'body-parser';
 
