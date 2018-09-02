@@ -16,5 +16,8 @@ We can change version later if we want
         * https://robomongo.org/
 
 1. Navigate to the project folder in terminal
+    1. In your IDE, enable Javascript: ECMAScript 6 (ES6)
     1. Run 'npm install'
-    1. Run 'npm start'
+    1. Run 'npm run testSetup'
+    1. Run 'npm start' to start the server
+    1. Press ctrl+c to stop the server
