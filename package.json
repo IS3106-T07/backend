@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-node ./server/app.js",
-    "testSetup": "babel-node ./server/server.js"
+    "testSetup": "babel-node ./server/server.js",
+    "test:integration": "export NODE_ENV=test || SET \"NODE_ENV=test\" && babel-node ./node_modules/.bin/_mocha --timeout 150000 ./tests/integration/AccountApiSpec.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,9 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0"
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3",
+    "supertest": "^3.1.0"
   }
 }
