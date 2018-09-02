@@ -1,0 +1,8 @@
+# Intellij editer settings
+.idea/
+
+# Node.js modules which you can run 'npm install' to download
+node_modules/
+
+# some redundent setting for node.js
+package-lock.json
