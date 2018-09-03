@@ -15,3 +15,8 @@ app.use('/', userRouter);
 app.listen(process.env.NODE_PORT, () => {
     console.log(`Started on port ${process.env.NODE_PORT}`);
 });
+
+// export app for testing
+module.exports = {
+    app
+};
