@@ -21,3 +21,6 @@
 1. Run '**npm run testSetup**', you should get a console response
 1. To start the server, run '**npm start**'
 1. Top stop the server, press **ctrl+c** to stop the server
+
+### Run tests
+1. Integration test: '**npm run test:integration**'
