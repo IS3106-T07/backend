@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 
 info:
   version: 1.0.0
@@ -9,7 +9,6 @@ schemes:
   - http
 
 host: localhost:3000
-basePath: /api-doc
 
 paths:
   /signup:
@@ -25,6 +24,8 @@ paths:
       responses:
           200:
             description: User successfully signed up
+            schema:
+              $ref: '#/definitions/User'
           400:
             description: User failed to sign up
 
