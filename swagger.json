@@ -1,0 +1,71 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Qoodie API",
+    "description": "Backend API Swagger Doc"
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "localhost:3000",
+  "paths": {
+    "/signup": {
+      "post": {
+        "summary": "Sign up a new user",
+        "operationId": "signupUser",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "The user to sign up",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully signed up",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "User failed to sign up"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": [
+        "name",
+        "email",
+        "password"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string",
+          "minimum": 1
+        },
+        "phone": {
+          "type": "string",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/definitions/User"
+      }
+    }
+  }
+}
