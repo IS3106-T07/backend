@@ -22,6 +22,9 @@
 1. To start the server, run '**npm start**'
 1. Top stop the server, press **ctrl+c** to stop the server
 
+### Run tests
+1. Integration test: '**npm run test:integration**'
+
 ### Swagger API
 1. Run '**npm install**'
 1. Run '**npm start**'
