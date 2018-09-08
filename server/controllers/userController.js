@@ -13,7 +13,7 @@ const signUpUser = async (req, res) => {
 };
 
 const signInUser = async (req, res) => {
-    const token = req.user.generateAuthToken();
+    const token = await req.user.generateAuthToken();
     res.header('x-auth', token).send(req.user);
 };
 
