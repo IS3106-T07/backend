@@ -21,3 +21,8 @@
 1. Run '**npm run testSetup**', you should get a console response
 1. To start the server, run '**npm start**'
 1. Top stop the server, press **ctrl+c** to stop the server
+
+### Swagger API
+1. Run '**npm install**'
+1. Run '**npm start**'
+1. The API documentation is at http://localhost:3000/api-docs

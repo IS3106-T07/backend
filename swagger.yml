@@ -28,7 +28,23 @@ paths:
               $ref: '#/definitions/User'
           400:
             description: User failed to sign up
-
+  /signin:
+    post:
+      summary: Sign in a user and generate an auth token
+      operationId: signinUser
+      parameters:
+        - name: userSignin
+          in: body
+          description: sign in with email and password
+          schema:
+            $ref: '#/definitions/userSignin'
+      responses:
+        200:
+          description: User successfully signed in
+          schema:
+            $ref: '#/definitions/User'
+        401:
+          description: Unauthorized
 definitions:
   User:
     type: object
@@ -48,5 +64,20 @@ definitions:
       phone:
         type: string
         minimum: 1
+      token:
+        type: string
     additionalProperties:
       $ref: '#/definitions/User'
+
+  userSignin:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    additionalProperties:
+      $ref: '#/definitions/userSignin'
