@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-UserSchema.method.generateAuthToken = function () {
+UserSchema.methods.generateAuthToken = function () {
     const user = this;
     const access = 'auth';
     const uid = user._id.toHexString();
@@ -44,15 +44,15 @@ UserSchema.method.generateAuthToken = function () {
     return token;
 };
 
-UserSchema.static.findByEmail = async function (email, password) {
-    const user = this;
+UserSchema.statics.findByEmail = async function (email, password) {
+    const User = this;
 
     if (!validator.isEmail(email)) {
         return Promise.reject('Invalid email');
     }
 
     try {
-        const userFound = await user.findOne({email: email});
+        const userFound = await User.findOne({email: email});
         if (!userFound) {
             return Promise.reject('User not found');
         }

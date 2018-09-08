@@ -4,7 +4,9 @@ const verifyPassword = async (req, res, next) => {
     const {email, password} = req.body;
 
     try {
-        req.user = await User.findByEmail(email, password);
+        const userFound = await User.findByEmail(email, password);
+        req.user = userFound;
+
         next();
     } catch (e) {
         res.status(401).send(e);
