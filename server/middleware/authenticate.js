@@ -1,6 +1,6 @@
 import {User} from '../models/user';
 
-const verifyPassword = (req, res, next) => {
+const verifyPassword = async (req, res, next) => {
     const {email, password} = req.body;
 
     try {

@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-UserSchema.method.generateToken = function () {
+UserSchema.method.generateAuthToken = function () {
     const user = this;
     const access = 'auth';
     const uid = user._id.toHexString();

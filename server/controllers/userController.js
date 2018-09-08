@@ -1,5 +1,5 @@
 import {User} from '../models/user';
-const signupUser = async (req, res) => {
+const signUpUser = async (req, res) => {
     const {name, email, password, phone} = req.body;
     const user = new User({name, email, password, phone});
 
@@ -11,6 +11,12 @@ const signupUser = async (req, res) => {
     }
 };
 
+const signInUser = async (req, res) => {
+    const token = req.user.generateAuthToken();
+    res.header('x-auth', token).send(req.user);
+};
+
 module.exports = {
-    signupUser
+    signUpUser,
+    signInUser
 };
