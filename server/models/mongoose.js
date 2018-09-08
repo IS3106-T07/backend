@@ -8,7 +8,7 @@ require('dotenv').load();
 import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
-const dbUri = process.env.NODE_ENV === 'development' ? process.env.MONGODB_Dev_URI : process.env.MONGODB_TEST_URI;
+const dbUri = process.env.NODE_ENV === 'development' ? process.env.MONGODB_DEV_URI : process.env.MONGODB_TEST_URI;
 
 mongoose.connect(dbUri, {useNewUrlParser: true});
 console.log(`Database URI: ${dbUri}`);

@@ -1,13 +1,20 @@
 import {
-    createUser
+    signUpUser,
+    signInUser
 } from '../controllers/userController';
+import {
+    verifyPassword
+} from '../middleware/authenticate'
 
 import express from 'express';
 
 const userRouter = express.Router();
 
-userRouter.route('/users')
-    .post(createUser);
+userRouter.route('/signup')
+    .post(signUpUser);
+
+userRouter.route('/signin')
+    .post(verifyPassword, signInUser);
 
 module.exports = {
     userRouter

@@ -1,5 +1,7 @@
+require('dotenv').load();
 import mongoose from 'mongoose';
 import validator from 'validator';
+import jwt from 'jsonwebtoken';
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -25,8 +27,45 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
+    },
+    token: {
+        type: String
     }
 });
+
+UserSchema.methods.generateAuthToken = function () {
+    const user = this;
+    const access = 'auth';
+    const uid = user._id.toHexString();
+
+    const token = jwt.sign({access, uid}, process.env.NODE_SECRET);
+    user.token = token;
+
+    return token;
+};
+
+UserSchema.statics.findByEmail = async function (email, password) {
+    const User = this;
+
+    if (!validator.isEmail(email)) {
+        return Promise.reject('Invalid email');
+    }
+
+    try {
+        const userFound = await User.findOne({email: email});
+        if (!userFound) {
+            return Promise.reject('User not found');
+        }
+
+        if (userFound.password !== password) {
+            return Promise.reject('Password not correct');
+        }
+
+        return userFound;
+    } catch (e) {
+        return Promise.reject(e)
+    }
+};
 
 const User = mongoose.model('User', UserSchema);
 
