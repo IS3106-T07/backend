@@ -1,9 +1,11 @@
 import {
     signUpUser,
-    signInUser
+    signInUser,
+    signOutUser
 } from '../controllers/userController';
 import {
-    verifyPassword
+    verifyPassword,
+    verifyToken
 } from '../middleware/authenticate'
 
 import express from 'express';
@@ -15,6 +17,9 @@ userRouter.route('/signup')
 
 userRouter.route('/signin')
     .post(verifyPassword, signInUser);
+
+userRouter.route('/signout')
+    .delete(verifyToken, signOutUser);
 
 module.exports = {
     userRouter

@@ -33,15 +33,29 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-UserSchema.methods.generateAuthToken = function () {
+UserSchema.methods.generateAuthToken = async function () {
     const user = this;
+
     const access = 'auth';
     const uid = user._id.toHexString();
 
     const token = jwt.sign({access, uid}, process.env.NODE_SECRET);
-    user.token = token;
+    try {
+        await user.update({token: token});
+    } catch (e) {
+        return Promise.reject(e);
+    }
 
     return token;
+};
+
+UserSchema.methods.removeAuthToken = async function () {
+    const user = this;
+    try {
+        await user.update({token: undefined});
+    } catch (e) {
+        return Promise.reject(e);
+    }
 };
 
 UserSchema.statics.findByEmail = async function (email, password) {
@@ -64,6 +78,26 @@ UserSchema.statics.findByEmail = async function (email, password) {
         return userFound;
     } catch (e) {
         return Promise.reject(e)
+    }
+};
+
+UserSchema.statics.findByUid = async function (uid) {
+    const User = this;
+
+    if (!uid) {
+        return Promise.reject('Invalid token');
+    }
+
+    try {
+        const userFound = await User.findOne({_id: uid});
+
+        if (!userFound) {
+            return Promise.reject('Invalid token');
+        }
+
+        return userFound;
+    } catch (e) {
+        return Promise.reject(e);
     }
 };
 

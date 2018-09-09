@@ -20,12 +20,12 @@ paths:
           in: body
           description: The user to sign up
           schema:
-            $ref: '#/definitions/User'
+            $ref: '#/definitions/userSignup'
       responses:
           200:
             description: User successfully signed up
             schema:
-              $ref: '#/definitions/User'
+              $ref: '#/definitions/userSignup'
           400:
             description: User failed to sign up
   /signin:
@@ -42,11 +42,29 @@ paths:
         200:
           description: User successfully signed in
           schema:
-            $ref: '#/definitions/User'
+            $ref: '#/definitions/userSigninResponse'
         401:
           description: Unauthorized
+  /signout:
+    delete:
+      summary: Sign out a user and remove user's auth token
+      operationId: signoutUser
+      parameters:
+        - in: header
+          name: x-auth
+          schema:
+            type: string
+            required: true
+      responses:
+        200:
+          description: User signed out
+          schema:
+            $ref: '#/definitions/userSigninResponse'
+
+
+
 definitions:
-  User:
+  userSignup:
     type: object
     required:
       - name
@@ -64,10 +82,31 @@ definitions:
       phone:
         type: string
         minimum: 1
+    additionalProperties:
+      $ref: '#/definitions/userSignup'
+
+  userSigninResponse:
+    type: object
+    required:
+    - name
+    - email
+    - password
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+        uniqueItems: true
+      password:
+        type: string
+        minimum: 1
+      phone:
+        type: string
+        minimum: 1
       token:
         type: string
     additionalProperties:
-      $ref: '#/definitions/User'
+      $ref: '#/definitions/userSigninResponse'
 
   userSignin:
     type: object
