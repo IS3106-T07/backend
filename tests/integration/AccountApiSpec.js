@@ -141,7 +141,7 @@ describe('Account API integration tests', async () => {
         });
     });
 
-    describe.only('DELETE /signout', async () => {
+    describe('DELETE /signout', async () => {
         it('should delete token and sign out user', async () => {
             testUser = {
                 email: dummyUsers[2].email,
