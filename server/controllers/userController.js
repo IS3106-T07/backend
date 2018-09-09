@@ -17,7 +17,13 @@ const signInUser = async (req, res) => {
     res.header('x-auth', token).send(req.user);
 };
 
+const signOutUser = async (req, res) => {
+    await req.user.removeAuthToken();
+    res.status(200).send('User signed out');
+};
+
 module.exports = {
     signUpUser,
-    signInUser
+    signInUser,
+    signOutUser
 };

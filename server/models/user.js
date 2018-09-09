@@ -35,6 +35,7 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.methods.generateAuthToken = function () {
     const user = this;
+
     const access = 'auth';
     const uid = user._id.toHexString();
 
@@ -42,6 +43,11 @@ UserSchema.methods.generateAuthToken = function () {
     user.token = token;
 
     return token;
+};
+
+UserSchema.methods.removeAuthToken = async function () {
+    const user = this;
+    user.token = undefined;
 };
 
 UserSchema.statics.findByEmail = async function (email, password) {
