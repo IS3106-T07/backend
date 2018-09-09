@@ -1,0 +1,7 @@
+{
+  "test": {
+    "driver": "mongodb",
+    "database": "FoodieTest",
+    "host": "localhost"
+  }
+}
