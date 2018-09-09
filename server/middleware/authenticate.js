@@ -14,7 +14,7 @@ const verifyPassword = async (req, res, next) => {
 };
 
 const verifyToken = async (req, res, next) => {
-    const token = res.header('x-auth');
+    const token = req.header('x-auth');
 
     if (!token) {
         return res.status(401).send('Auth token not found in header');

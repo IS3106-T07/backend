@@ -33,21 +33,29 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-UserSchema.methods.generateAuthToken = function () {
+UserSchema.methods.generateAuthToken = async function () {
     const user = this;
 
     const access = 'auth';
     const uid = user._id.toHexString();
 
     const token = jwt.sign({access, uid}, process.env.NODE_SECRET);
-    user.token = token;
+    try {
+        await user.update({token: token});
+    } catch (e) {
+        return Promise.reject(e);
+    }
 
     return token;
 };
 
 UserSchema.methods.removeAuthToken = async function () {
     const user = this;
-    user.token = undefined;
+    try {
+        await user.update({token: undefined});
+    } catch (e) {
+        return Promise.reject(e);
+    }
 };
 
 UserSchema.statics.findByEmail = async function (email, password) {
