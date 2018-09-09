@@ -8,7 +8,8 @@ import {User} from '../../server/models/user';
 import {dummyUsers} from '../storage/mockUsers';
 import {
     postSignup,
-    postSignin
+    postSignin,
+    deleteSignout
 } from '../helpers/api'
 
 describe('Account API integration tests', async () => {
@@ -137,6 +138,27 @@ describe('Account API integration tests', async () => {
             };
 
             await testServer.post('/signin').send(testUser).expect(401);
+        });
+    });
+
+    describe.only('DELETE /signout', async () => {
+        it('should delete token and sign out user', async () => {
+            testUser = {
+                email: dummyUsers[2].email,
+                password: dummyUsers[2].password
+            };
+
+            const response = await postSignin(testServer, testUser);
+            const token = response.body.token;
+            await deleteSignout(testServer, token);
+            const userInDb = await User.findByEmail(testUser.email, testUser.password);
+
+            assert.equal(userInDb.token, undefined);
+        });
+
+        it('should return 401 if token is invalid', async () => {
+            const invalidToken = 'xxoo';
+            await testServer.delete('/signout').set('x-auth', invalidToken).expect(401);
         });
     });
 });
