@@ -67,6 +67,26 @@ UserSchema.statics.findByEmail = async function (email, password) {
     }
 };
 
+UserSchema.statics.findByUid = async function (uid) {
+    const User = this;
+
+    if (!uid) {
+        return Promise.reject('Invalid token');
+    }
+
+    try {
+        const userFound = await User.findOne({_id: uid});
+
+        if (!userFound) {
+            return Promise.reject('Invalid token');
+        }
+
+        return userFound;
+    } catch (e) {
+        return Promise.reject(e);
+    }
+};
+
 const User = mongoose.model('User', UserSchema);
 
 module.exports = {
