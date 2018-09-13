@@ -7,11 +7,17 @@ const StoreSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    open: {
-        type: Boolean,
-    },
     owner: {
         type: String,
         required: true
+    },
+    open: {
+        type: Boolean,
     }
 });
+
+const Store = mongoose.model('Store', StoreSchema);
+
+module.exports = {
+    Store
+};
