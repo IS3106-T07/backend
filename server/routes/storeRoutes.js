@@ -11,3 +11,7 @@ const storeRouter = express.Router();
 
 storeRouter.route('/store')
     .post(verifyToken, createStore);
+
+module.exports = {
+    storeRouter
+};
