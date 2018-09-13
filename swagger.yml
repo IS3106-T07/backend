@@ -60,6 +60,39 @@ paths:
           description: User signed out
           schema:
             $ref: '#/definitions/userSigninResponse'
+  /store:
+    post:
+      summary: Create a store
+      operationId: createStore
+      parameters:
+        - in: header
+          name: x-auth
+          schema:
+            type: string
+            required: true
+        - in: body
+          description: Create a store
+          schema:
+            required:
+              - name
+            properties:
+              name:
+                type: string
+      responses:
+        200:
+          description: Store created successfully
+          schema:
+            properties:
+              name:
+                type: string
+              owner:
+                type: string
+              open:
+                type: boolean
+        400:
+          description: Invalid request
+
+
 
 
 
