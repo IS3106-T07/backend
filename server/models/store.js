@@ -9,5 +9,9 @@ const StoreSchema = mongoose.Schema({
     },
     open: {
         type: Boolean,
+    },
+    owner: {
+        type: String,
+        required: true
     }
 });
