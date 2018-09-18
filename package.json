@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-node ./server/app.js",
+    "db:insert": "babel-node ./server/storage/insertDummyUser.js",
     "testSetup": "babel-node ./server/server.js",
     "test:integration": "export NODE_ENV=test || SET \"NODE_ENV=test\" && babel-node ./node_modules/.bin/_mocha --timeout 150000 ./tests/integration/AccountApiSpec.js"
   },

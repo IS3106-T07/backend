@@ -29,3 +29,6 @@
 1. Run '**npm install**'
 1. Run '**npm start**'
 1. The API documentation is at http://localhost:3000/api-docs
+
+### Database
+1. Insert dummy user: '**npm run db:insert**'
