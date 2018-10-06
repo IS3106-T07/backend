@@ -7,11 +7,13 @@ import swaggerDocument from '../swagger';
 
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import {userRouter} from './routes/userRoutes';
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors('http://localhost:8080'));
 app.use('/', userRouter);
 
 app.listen(process.env.NODE_PORT, () => {
