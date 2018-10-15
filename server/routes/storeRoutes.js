@@ -5,7 +5,7 @@ import {
     verifyToken
 } from '../middleware/authenticate';
 
-import express from 'expect';
+import express from 'express';
 
 const storeRouter = express.Router();
 

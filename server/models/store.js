@@ -1,6 +1,5 @@
 require('dotenv').load();
 import mongoose from 'mongoose';
-import validator from 'validator';
 
 const StoreSchema = mongoose.Schema({
     name: {
@@ -13,6 +12,7 @@ const StoreSchema = mongoose.Schema({
     },
     open: {
         type: Boolean,
+        required: true
     }
 });
 
