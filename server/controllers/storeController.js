@@ -3,7 +3,7 @@ import {Store} from '../models/store';
 const createStore = async (req, res) => {
     const {name} = req.body;
     const {_id} = req.user;
-    console.log(_id);
+    console.log(`name: ${name}`);
 
     try {
         console.log('im here');

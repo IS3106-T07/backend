@@ -94,17 +94,20 @@
         "operationId": "createStore",
         "parameters": [
           {
-            "in": "header",
             "name": "x-auth",
+            "in": "header",
+            "description": "The store owner's signin JWT x-auth token",
             "schema": {
               "type": "string",
               "required": true
             }
           },
           {
+            "name": "store",
             "in": "body",
             "description": "Create a store",
             "schema": {
+              "type": "object",
               "required": [
                 "name"
               ],
@@ -216,6 +219,26 @@
       },
       "additionalProperties": {
         "$ref": "#/definitions/userSignin"
+      }
+    },
+    "createStore": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "open": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/definitions/createStore"
       }
     }
   }
