@@ -60,6 +60,42 @@ paths:
           description: User signed out
           schema:
             $ref: '#/definitions/userSigninResponse'
+  /store:
+    post:
+      summary: Create a store
+      operationId: createStore
+      parameters:
+        - name: x-auth
+          in: header
+          description: The store owner's signin JWT x-auth token
+          schema:
+            type: string
+            required: true
+        - name: store
+          in: body
+          description: Create a store
+          schema:
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+      responses:
+        200:
+          description: Store created successfully
+          schema:
+            properties:
+              name:
+                type: string
+              owner:
+                type: string
+              open:
+                type: boolean
+        400:
+          description: Invalid request
+
+
 
 
 
@@ -120,3 +156,17 @@ definitions:
         type: string
     additionalProperties:
       $ref: '#/definitions/userSignin'
+
+  createStore:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+      owner:
+        type: string
+      open:
+        type: boolean
+    additionalProperties:
+      $ref: '#/definitions/createStore'
